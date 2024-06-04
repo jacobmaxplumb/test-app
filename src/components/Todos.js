@@ -1,44 +1,17 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useItems } from "../utils/useItems";
 
-const apiEndpoint = `${process.env.REACT_APP_API_URL}/todos`;
+const initalFormValues = {
+    text: '',
+    completed: false
+}
 
 export const Todos = () => {
-  const [todos, setTodos] = useState([]);
-  const [text, setText] = useState('');
-
-  const getTodos = async () => {
-    if (localStorage.getItem('todos')) {
-        console.log(localStorage.getItem('todos'));
-        const todos = JSON.parse(localStorage.getItem('todos'));
-        setTodos(JSON.parse(localStorage.getItem('todos')));
-    }
-    else {
-        const { data } = await axios.get(apiEndpoint);
-        setTodos(data);
-    }
-  };
-
-  const addTodo = async () => {
-    const todo = {text: text, completed: false}
-    const { data } = await axios.post(apiEndpoint, todo);
-    setTodos([...todos, data]);
-    setText('');
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }
-
-  useEffect(() => {
-    getTodos();
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos])
+  const [todos, formValues, addTodo, handleInputChange] = useItems('todos', initalFormValues);
 
   return (
     <>
       <h1>Todos</h1>
-      <input value={text} onChange={(e) => setText(e.target.value)}/>
+      <input name="text" value={formValues.text} onChange={handleInputChange}/>
       <button onClick={addTodo}>Add</button>
       <ul>
         {todos.map((todo) => (

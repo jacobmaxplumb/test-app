@@ -19,6 +19,16 @@
       "id": "e929",
       "text": "something",
       "completed": false
+    },
+    {
+      "id": "6b80",
+      "text": "something else",
+      "completed": false
+    },
+    {
+      "id": "df30",
+      "text": "add something",
+      "completed": false
     }
   ],
   "contacts": [
@@ -26,6 +36,16 @@
       "id": "1",
       "fullName": "Jacob Plumb",
       "phone": "123-123-1234"
+    },
+    {
+      "id": "2dc1",
+      "fullName": "James Plumb",
+      "phone": "122-122-1222"
+    },
+    {
+      "id": "c394",
+      "fullName": "Deema Hagehassan",
+      "phone": "123-456-6789"
     }
   ]
 }
